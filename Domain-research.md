@@ -1,6 +1,5 @@
 # Complete Research Paper List — Domain Foundations
 ## FYP: Agentic Wafer Defect Root Cause Analysis with Counterfactual XAI
-**AI & Data Science Dept., PVGCOET, SPPU**
 
 ---
 
@@ -511,5 +510,3 @@ Karimi, Schölkopf, Valera — *ACM FAccT*, 2021
 **Week 8:** Papers 37, 38, 4, 5, 6 (Pillar 7 — evaluation; remaining Pillar 1 context)
 
 ---
-
-*Compiled for FYP "Agentic Wafer Defect Root Cause Analysis with Counterfactual XAI" — AI & Data Science Dept., PVGCOET, SPPU*
