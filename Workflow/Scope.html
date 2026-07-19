@@ -1,0 +1,73 @@
+
+<style>
+.tier-block{border-radius:12px;border:0.5px solid var(--border);padding:1.25rem;margin-bottom:1rem;background:var(--surface-2)}
+.tier-head{display:flex;align-items:center;gap:12px;margin-bottom:1rem}
+.tier-pill{font-size:11px;font-weight:500;padding:4px 12px;border-radius:20px;white-space:nowrap}
+.t1-pill{background:#E1F5EE;color:#085041}
+.t2-pill{background:#FAEEDA;color:#633806}
+.t3-pill{background:#E6F1FB;color:#0C447C}
+.tier-title{font-size:16px;font-weight:500;color:var(--text-primary)}
+.tier-sub{font-size:12px;color:var(--text-secondary);margin-top:2px}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px}
+.feat{background:var(--surface-1);border:0.5px solid var(--border);border-radius:8px;padding:10px 12px}
+.feat-num{font-size:10px;color:var(--text-muted);font-weight:500;margin-bottom:3px}
+.feat-name{font-size:13px;font-weight:500;color:var(--text-primary);margin-bottom:3px}
+.feat-desc{font-size:11px;color:var(--text-secondary);line-height:1.5}
+.builds-on{font-size:11px;color:var(--text-secondary);background:var(--surface-1);border:0.5px solid var(--border);border-radius:6px;padding:6px 10px;margin-top:10px}
+.builds-on span{color:var(--text-accent);font-weight:500}
+</style>
+
+<div class="tier-block" style="border-left:3px solid #1D9E75">
+<div class="tier-head">
+<span class="tier-pill t1-pill">Phase I - Core Investigation Platform</span>
+<div><div class="tier-title">The committed FYP deliverable</div><div class="tier-sub">A working, evaluatable multi-agent RCA system. Everything else builds on this.</div></div>
+</div>
+<div class="feat-grid">
+<div class="feat"><div class="feat-num">F1</div><div class="feat-name">CNN defect classifier</div><div class="feat-desc">ResNet-18 trained on WM-811K, 8 defect classes, ≥92% accuracy. Data augmentation for class imbalance. Train/val/test split with confusion matrix.</div></div>
+<div class="feat"><div class="feat-num">F2</div><div class="feat-name">GradCAM++ heatmaps</div><div class="feat-desc">Visual attribution on every CNN prediction. Overlay on wafer image showing which spatial region drove the classification. Saves as image output.</div></div>
+<div class="feat"><div class="feat-num">F3</div><div class="feat-name">IoT process simulator</div><div class="feat-desc">6 parameters: chamber temp, RF power, gas flow, etch duration, pressure, rotation. Baseline values and noise calibrated against real SECOM sensor distributions. Anomaly injection (step/drift/spike) is causally linked to F4's mapping, not independently randomised — each injected fault traces to a literature-cited defect-process rule.</div></div>
+<div class="feat"><div class="feat-num">F4</div><div class="feat-name">Defect–process causal graph</div><div class="feat-desc">Literature-derived, citation-backed graph (built first, before any code): each defect class → responsible process parameters → expected deviation direction → source paper. Not a static guess file — every edge traces to Pillar 1 research. The ground truth all agents reason against, and the source of F3's anomaly injection rules.</div></div>
+<div class="feat"><div class="feat-num">F5</div><div class="feat-name">Vision Agent</div><div class="feat-desc">Wraps F1+F2. Accepts wafer image, returns defect class, confidence score, and GradCAM++ heatmap. Publishes findings to message bus.</div></div>
+<div class="feat"><div class="feat-num">F6</div><div class="feat-name">Process Correlation Agent</div><div class="feat-desc">Subscribes to IoT stream (F3). On defect alert, retrieves parameter window for that wafer run. Flags which of the 6 parameters deviated and by how much.</div></div>
+<div class="feat"><div class="feat-num">F7</div><div class="feat-name">Counterfactual Agent</div><div class="feat-desc">Takes CNN embeddings + deviated process params. Runs DiCE to find minimal parameter changes that would have prevented the defect. Each candidate counterfactual is checked against physically feasible bounds (Algorithmic Recourse framework) before being output — no "reduce gas flow below its physical minimum" nonsense. Outputs validated "reduce X by Y" statements.</div></div>
+<div class="feat"><div class="feat-num">F8</div><div class="feat-name">Coordinator Agent</div><div class="feat-desc">Receives all three agents' outputs. Applies defect–process causal graph (F4) to validate hypotheses. Commits to a top root cause but ranks alternatives with confidence scores rather than asserting a single unranked verdict — an honest determination, not a false-certainty one.</div></div>
+<div class="feat"><div class="feat-num">F9</div><div class="feat-name">RCA report output</div><div class="feat-desc">Structured JSON + human-readable text report. Fields: defect class, confidence, deviating params, ranked root cause hypotheses (top + alternatives with probabilities), counterfactual recommendation.</div></div>
+<div class="feat"><div class="feat-num">F10</div><div class="feat-name">Evaluation framework</div><div class="feat-desc">Ablation study: CNN-only vs CNN+GradCAM vs full multi-agent. Measure time-to-RCA vs human baseline (4–24 hrs). Fault-recovery rate: inject known faults into the calibrated simulator (F3) and measure whether the system correctly identifies them — the core validity metric given no real fab ground-truth exists.</div></div>
+<div class="feat"><div class="feat-num">F11</div><div class="feat-name">Decision Impact Estimator</div><div class="feat-desc">Converts the Coordinator's ranked verdict into an urgency tier and estimated cost-of-delay, using published fab downtime/yield-loss figures (not invented numbers). Thin formula/lookup layer — the actual "decision support" output engineers act on.</div></div>
+</div>
+</div>
+
+<div class="tier-block" style="border-left:3px solid #BA7517">
+<div class="tier-head">
+<span class="tier-pill t2-pill">Phase II - Knowledge-Driven Investigation</span>
+<div><div class="tier-title">From research demo to trusted system</div><div class="tier-sub">Uses every Tier 1 component. Adds memory, confidence, and multiple entry points.</div></div>
+</div>
+<div class="builds-on">Requires: <span>F1–F10 fully complete and stable before starting any Tier 2 feature</span></div>
+<div class="feat-grid" style="margin-top:10px">
+<div class="feat"><div class="feat-num">E1</div><div class="feat-name">Knowledge Graph</div><div class="feat-desc">Structured graph: defect nodes → process step nodes → parameter nodes → failure mode nodes. Extends F4 from static file to queryable graph. Agents query it for causal paths.</div></div>
+<div class="feat"><div class="feat-num">E2</div><div class="feat-name">Historical case base</div><div class="feat-desc">Database of past investigations with confirmed root causes and outcomes. When a new defect arrives, similarity search retrieves the top-3 matching cases with their resolutions.</div></div>
+<div class="feat"><div class="feat-num">E3</div><div class="feat-name">Equipment state model</div><div class="feat-desc">Tracks per-chamber: runs since last PM, pump health score, days since last clean, electrode age. Process Agent uses this to weight hypotheses — worn pump + pressure variance = high confidence pump wear.</div></div>
+<div class="feat"><div class="feat-num">E4</div><div class="feat-name">Bayesian confidence fusion</div><div class="feat-desc">Coordinator fuses confidence from: CNN score, sensor deviation magnitude, KG causal strength, case base match similarity. Outputs a single calibrated probability per root cause hypothesis.</div></div>
+<div class="feat"><div class="feat-num">E5</div><div class="feat-name">Agent debate protocol</div><div class="feat-desc">When Vision Agent and Process Agent contradict (e.g. pattern looks thermal but sensors show pressure), Coordinator runs structured evidence weighting before committing to a root cause verdict.</div></div>
+<div class="feat"><div class="feat-num">E6</div><div class="feat-name">Multiple entry points</div><div class="feat-desc">Investigation can start from: wafer image, sensor alarm threshold breach, yield drop on a lot, or manual engineer query. Each entry point routes to the appropriate agent first, not always Vision.</div></div>
+<div class="feat"><div class="feat-num">E7</div><div class="feat-name">Alternative hypotheses</div><div class="feat-desc">Coordinator outputs ranked list of root causes with probabilities, not just the top one. Engineer sees: RC-01 pump wear 76%, RC-02 controller drift 14%, unknown 10%.</div></div>
+<div class="feat"><div class="feat-num">E8</div><div class="feat-name">Engineer dashboard</div><div class="feat-desc">Web UI showing: active alerts, open investigations, chamber status tiles, RCA report viewer. No coding required to use the system — designed for a process engineer with no ML background.</div></div>
+</div>
+</div>
+
+<div class="tier-block" style="border-left:3px solid #378ADD">
+<div class="tier-head">
+<span class="tier-pill t3-pill">Phase III - Adaptive Manufacturing Intelligence</span>
+<div><div class="tier-title">The real fab vision — learns from every investigation</div><div class="tier-sub">Uses all of Tier 1 and Tier 2. Each investigation makes the system smarter.</div></div>
+</div>
+<div class="builds-on">Requires: <span>E1–E8 complete. Specifically E1 (KG), E2 (case base), and E3 (equipment state) are prerequisites for every Tier 3 feature.</span></div>
+<div class="feat-grid" style="margin-top:10px">
+<div class="feat"><div class="feat-num">A1</div><div class="feat-name">Engineer feedback loop</div><div class="feat-desc">After an investigation, engineer confirms or corrects the root cause. Confirmed: case stored in E2, KG edge confidence updated in E1. Corrected: KG penalises wrong path, learns the right one.</div></div>
+<div class="feat"><div class="feat-num">A2</div><div class="feat-name">KG confidence evolution</div><div class="feat-desc">Every confirmed or corrected investigation updates Bayesian weights on KG edges. Over time, the graph's confidence values reflect real fab experience, not just literature priors.</div></div>
+<div class="feat"><div class="feat-num">A3</div><div class="feat-name">Forward simulation</div><div class="feat-desc">"If I skip this PM for 20 more runs, what is the defect probability?" Uses equipment state model (E3) + historical degradation curves + KG to project defect risk forward in time.</div></div>
+<div class="feat"><div class="feat-num">A4</div><div class="feat-name">Predictive maintenance alerts</div><div class="feat-desc">Proactive alerts before defects occur. Chamber 3A pump health trending toward failure — alert fires at run 260, before the 250-run threshold that historically causes edge rings.</div></div>
+<div class="feat"><div class="feat-num">A5</div><div class="feat-name">SCADA / PLC connector</div><div class="feat-desc">Swap the IoT simulator (F3) for a real connector to fab equipment. Zero agent code changes — only the data source changes. Validates the Tier 1 architecture decision.</div></div>
+<div class="feat"><div class="feat-num">A6</div><div class="feat-name">Cross-chamber pattern learning</div><div class="feat-desc">If Chamber 2A and 3A both show edge rings after similar run counts, the system infers a systemic issue (batch of consumables, process recipe change) rather than isolated equipment failure.</div></div>
+<div class="feat"><div class="feat-num">A7</div><div class="feat-name">Yield trend analytics</div><div class="feat-desc">Dashboard analytics: defect rate per chamber over time, root cause frequency distribution, MTTRC trend, PM effectiveness scoring. Gives fab managers a quality intelligence view.</div></div>
+</div>
+</div>
