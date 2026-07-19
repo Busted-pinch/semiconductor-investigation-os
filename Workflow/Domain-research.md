@@ -1,6 +1,5 @@
 # Complete Research Paper List — Domain Foundations
 ## FYP: Agentic Wafer Defect Root Cause Analysis with Counterfactual XAI
-**AI & Data Science Dept., PVGCOET, SPPU**
 
 ---
 
@@ -538,5 +537,3 @@ Arts et al. — *arXiv*, 2023 (citing Parent, 2000 for semiconductor-specific fi
 **Week 8:** Papers 37, 38, 39, 40, 4, 5, 6 (Pillar 7 — evaluation; Pillar 8 — simulator calibration and downtime economics; remaining Pillar 1 context)
 
 ---
-
-*Compiled for FYP "Agentic Wafer Defect Root Cause Analysis with Counterfactual XAI" — AI & Data Science Dept., PVGCOET, SPPU*
