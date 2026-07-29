@@ -1,6 +1,5 @@
 # Complete Research Paper List — Domain Foundations
 ## FYP: Agentic Wafer Defect Root Cause Analysis with Counterfactual XAI
-**AI & Data Science Dept., PVGCOET, SPPU**
 
 ---
 
@@ -125,7 +124,7 @@ Imoto, Nakai, Ike, Haruki, Sato — *IEEE Transactions on Semiconductor Manufact
 
 - **WHY:** Shows exactly how transfer learning (pretrained ImageNet CNN → fine-tuned on wafer maps) works in the semiconductor context. This validates your ResNet-18 fine-tuning strategy.
 - **WHAT TO EXTRACT:** How many layers to freeze vs. fine-tune; the accuracy vs. training data size tradeoff; why ImageNet-pretrained features transfer to wafer maps despite the domain difference.
-- **ACCESS:** https://ieeexplore.ieee.org/document/8828022
+- **ACCESS:** [Paper pdf link](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=8839832)
 
 ---
 
@@ -538,5 +537,3 @@ Arts et al. — *arXiv*, 2023 (citing Parent, 2000 for semiconductor-specific fi
 **Week 8:** Papers 37, 38, 39, 40, 4, 5, 6 (Pillar 7 — evaluation; Pillar 8 — simulator calibration and downtime economics; remaining Pillar 1 context)
 
 ---
-
-*Compiled for FYP "Agentic Wafer Defect Root Cause Analysis with Counterfactual XAI" — AI & Data Science Dept., PVGCOET, SPPU*
