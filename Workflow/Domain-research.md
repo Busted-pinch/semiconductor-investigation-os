@@ -124,7 +124,7 @@ Imoto, Nakai, Ike, Haruki, Sato — *IEEE Transactions on Semiconductor Manufact
 
 - **WHY:** Shows exactly how transfer learning (pretrained ImageNet CNN → fine-tuned on wafer maps) works in the semiconductor context. This validates your ResNet-18 fine-tuning strategy.
 - **WHAT TO EXTRACT:** How many layers to freeze vs. fine-tune; the accuracy vs. training data size tradeoff; why ImageNet-pretrained features transfer to wafer maps despite the domain difference.
-- **ACCESS:** https://ieeexplore.ieee.org/document/8828022
+- **ACCESS:** [Paper pdf link](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=8839832)
 
 ---
 
