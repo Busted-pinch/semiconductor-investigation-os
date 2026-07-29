@@ -5,7 +5,7 @@
 ---
 
 > **How to use this list:**
-> Papers are grouped into 7 pillars that mirror your project's architecture. Each paper has a **WHY** (what it gives you), a **WHAT TO EXTRACT** (the exact knowledge to pull out), and an **ACCESS** link. Study every paper in Pillars 1–3 before writing a single line of code. Pillars 4–7 are for when you start building each module.
+> Papers are grouped into 8 pillars that mirror your project's architecture. Each paper has a **WHY** (what it gives you), a **WHAT TO EXTRACT** (the exact knowledge to pull out), and an **ACCESS** link. Study every paper in Pillars 1–3 before writing a single line of code. Pillars 4–7 are for when you start building each module.
 
 ---
 
